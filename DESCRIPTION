@@ -1,0 +1,93 @@
+Package: exSTRa
+Type: Package
+Title: Expanded STR algorithm: detecting expansions in Illumina sequencing data
+Version: 0.92.0
+Date: 2022-09-01
+Authors@R: c(
+  person("Rick M", "Tankard", role = c("cre", "aut"),
+    email = "rickmtankard@gmail.com",
+    comment = c(ORCID = "0000-0002-8847-9401")),
+  person("Mark", "Bennett", role = "aut",
+    email = "bennett.ma@wehi.edu.au", 
+    comment = c(ORCID = "0000-0002-3561-6804")),
+  person("Melanie", "Bahlo", role = "aut",
+    email = "bahlo@wehi.edu.au",
+    comment = c(ORCID = "0000-0001-5132-0774"))
+  )
+Description: 
+    Detecting repeat expansions with paired-end Illumina sequencing data using
+    visualizations and simulated p-values.
+    Repeat expansions diseases include Huntington's, many spinocerebellar 
+    ataxias, fragile-X and Friedreich's ataxia.
+biocViews: 
+    Classification, Genetics, VariantDetection, ExomeSeq, WholeGenome, 
+    Visualization
+License: GPL (>= 3)
+BugReports: https://github.com/bahlolab/exSTRa/issues
+URL: https://github.com/bahlolab/exSTRa
+Encoding: UTF-8
+Depends:
+    R (>= 4.2.0),
+    data.table (>= 1.10.4-3)
+Imports: 
+    testit (>= 0.7), 
+    checkmate (>= 2.1.0),
+    stringr (>= 1.2.0), 
+    reshape2 (>= 1.4.3), 
+    magrittr (>= 1.5), 
+    RColorBrewer (>= 1.1-2),
+    ggplot2 (>= 3.3.6),
+    dplyr,
+    purrr,
+    methods,
+    graphics,
+    stats,
+    utils,
+    grDevices,
+    parallel,
+    snow
+Suggests: 
+    testthat (>= 2.0.0),
+    DiagrammeR (>= 0.9.2),
+    DiagrammeRsvg (>= 0.1),
+    Rsamtools,
+    Biostrings,
+    IRanges,
+    S4Vectors,
+    xlsx (>= 0.5.7),
+    knitr (>= 1.20),
+    rmarkdown (>= 1.11),
+    vdiffr (>= 1.0.4),
+    covr (>= 3.5.1)
+RoxygenNote: 7.2.1
+LazyData: false
+Collate:
+    'CLASS_exstra_db.R'
+    'CLASS_exstra_score.R'
+    'CLASS_exstra_tsum.R'
+    'GENERICS.R'
+    'add_alpha.R'
+    'exstra_known.R'
+    'exstra_wgs_pcr_2.R'
+    'filter_low_scores.R'
+    'filter_sex.R'
+    'ggplot.exstra_score.R'
+    'globals.R'
+    'loci_normal_expansion.R'
+    'p_values.R'
+    'plot_multi.R'
+    'private_functions.R'
+    'rbind_score_list.R'
+    'read_exstra_db_txt_guesser.R'
+    'read_exstra_db_known.R'
+    'read_exstra_db_ucsc.R'
+    'read_exstra_db_xlsx.R'
+    'read_exstra_db.R'
+    'read_score.R'
+    'score_bam.R'
+    'suggested_exstra_pipeline.R'
+    'tsum_p_value_summary.R'
+    'tsum_test.R'
+    'zzz.R'
+VignetteBuilder: knitr
+Config/testthat/edition: 3

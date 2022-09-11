@@ -1,0 +1,13 @@
+^codecov\.yml$
+^\.travis\.yml$
+^Meta$
+^doc$
+^.*\.Rproj$
+^\.Rproj\.user$
+^data-raw$
+^\.github$
+^examples$
+^LICENSE$
+^LICENSE\.md$
+^NEWS\.md$
+^NEWS-draft\.md$
