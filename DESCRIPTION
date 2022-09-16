@@ -43,6 +43,7 @@ Imports:
     graphics,
     stats,
     utils,
+    tools,
     grDevices,
     parallel,
     snow
@@ -55,7 +56,6 @@ Suggests:
     IRanges,
     S4Vectors,
     NGScopyData,
-    xlsx (>= 0.5.7),
     knitr (>= 1.20),
     rmarkdown (>= 1.11),
     vdiffr (>= 1.0.4),
