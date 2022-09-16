@@ -26,7 +26,6 @@ test_that("set_sample_names_score_bam", {
 })
 
 test_that("score_bam()", {
-  expect_s3_class(read_exstra_db(system.file("extdata", "ex1_dummy_repeat.txt", package = "exSTRa")), "exstra_db")
   expect_snapshot(
     score_bam(
       system.file("extdata", "ex1.bam", package = "Rsamtools"), 
