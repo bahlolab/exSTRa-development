@@ -3,11 +3,10 @@
 #' Reads a file formatted for exSTRa that contains information of short-tandem repeat
 #' loci that may be expanded. 
 #' 
-#' Files are assumed to be tab-delimited unless the extension is xlsx in which case the 
-#' xlsx package is used (if installed).
+#' Files are assumed to be tab-delimited
 #' 
 #' @param file Path of the file to be read.
-#' @param ... Extra arguments to the functions \code{read.delim} (text) or \code{xlsx::read.xlsx} (for xlsx files).
+#' @param ... Extra arguments to the functions \code{read.delim} (text)
 #' 
 #' @return An exstra_db object.
 #' 
@@ -17,7 +16,6 @@
 #' read_exstra_db(system.file("extdata", "repeat_expansion_disorders_hg19.txt", package = "exSTRa")) 
 #' 
 #' @export
-#' @include read_exstra_db_xlsx.R
 #' @include read_exstra_db_ucsc.R
 #' @include read_exstra_db_known.R
 #' @include read_exstra_db_txt_guesser.R
