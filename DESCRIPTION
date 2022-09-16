@@ -54,6 +54,7 @@ Suggests:
     Biostrings,
     IRanges,
     S4Vectors,
+    NGScopyData,
     xlsx (>= 0.5.7),
     knitr (>= 1.20),
     rmarkdown (>= 1.11),
