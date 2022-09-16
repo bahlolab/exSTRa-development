@@ -1,8 +1,8 @@
-Package: exSTRa
+Package: exSTRaDevelopment
 Type: Package
 Title: Expanded STR algorithm: detecting expansions in Illumina sequencing data
 Version: 0.92.0
-Date: 2022-09-01
+Date: 2022-09-16
 Authors@R: c(
   person("Rick M", "Tankard", role = c("cre", "aut"),
     email = "rickmtankard@gmail.com",
