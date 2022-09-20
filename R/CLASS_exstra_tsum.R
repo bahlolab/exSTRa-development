@@ -24,7 +24,7 @@ is.exstra_tsum <- function(x) inherits(x, "exstra_tsum")
 
 #' Create a new exstra_tsum object.
 #' @keywords internal
-exstra_tsum_new_ <- function(strscore, tsum, p.values = NULL, 
+exstra_tsum_new_ <- function(strscore, tsum,
     qmats = NULL, xecs = NULL, args = NULL, 
   correction = c("bf", "locus", "uncorrected"),
   alpha = 0.05,
@@ -32,24 +32,16 @@ exstra_tsum_new_ <- function(strscore, tsum, p.values = NULL,
   assert("strscore should be from class exstra_score", is.exstra_score(strscore))
   
   setkey(tsum, locus, sample)
-  if(is.null(p.values)) {
-    ts_fake <- structure(
-      list(stats = tsum, n_tests = tsum[!is.na(tsum), .N])
-      , class = c("exstra_tsum", "exstra_score", "exstra_db")
-    )
-    stats <- p_values(ts_fake,
-      correction = correction,
-      alpha = alpha,
-      only.signif = only.signif,
-      modify = TRUE
-    )
-  } else {
-    ps <- p_values(correction = correction,
-      alpha = alpha,
-      only.signif = only.signif,
-      p.matrix = p.values)
-    stats <- merge(tsum, ps, all = TRUE)
-  }
+  ts_fake <- structure(
+    list(stats = tsum, n_tests = tsum[!is.na(tsum), .N])
+    , class = c("exstra_tsum", "exstra_score", "exstra_db")
+  )
+  stats <- p_values(ts_fake,
+    correction = correction,
+    alpha = alpha,
+    only.signif = only.signif,
+    modify = TRUE
+  )
   
   out_list <- list(
     data = strscore$data, 

@@ -36,10 +36,8 @@ p_values <- function(
     is.vector(correction))
   assert("alpha should be a probability value.", alpha >= 0, alpha <= 1)
   assert("only.signif should be a logical.", is.logical(only.signif))
-  assert("", xor(is.null(p.matrix), missing(tsum)))
   correction <- match.arg(correction)
   
-  # Get p.matrix
   n_tests <- tsum$n_tests
   out.table <- tsum$stats
   if(!modify) { # make a copy so we do not modify it
