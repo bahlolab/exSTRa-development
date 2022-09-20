@@ -25,11 +25,44 @@ test_that("set_sample_names_score_bam", {
     "tps_27")
 })
 
+ex1_db_rev <- read_exstra_db(system.file("extdata", "ex1_dummy_repeat.txt", package = "exSTRa"))
+ex1_db_rev$db[, strand := "-"]
+
 test_that("score_bam()", {
   expect_snapshot(
     score_bam(
       system.file("extdata", "ex1.bam", package = "Rsamtools"), 
       system.file("extdata", "ex1_dummy_repeat.txt", package = "exSTRa"), 
       sample_name_origin = "basename", groups.regex = c("case" = ""))
+  )
+  expect_snapshot(
+    score_bam(
+      system.file("extdata", "ex1.bam", package = "Rsamtools"), 
+      ex1_db_rev, 
+      sample_name_origin = "basename", groups.regex = c("case" = ""))
+  )
+  expect_snapshot(
+    score_bam(
+      system.file("extdata", "ex1.bam", package = "Rsamtools"), 
+      system.file("extdata", "ex1_dummy_repeat.txt", package = "exSTRa"), 
+      sample_name_origin = "basename", groups.regex = c("case" = ""),
+      method = "count")
+  )
+  expect_error(score_bam("fake", 5, groups.regex = c("case" = "")), 
+               "not of a recognised type")
+  expect_error(score_bam("fake", 
+      system.file("extdata", "ex1_dummy_repeat.txt", package = "exSTRa"),
+      groups.regex = c("case" = ""), sample_names = c("a", "b")), 
+    "does not match length of 'paths'")
+})
+
+test_that("score_bam() parallel", {
+  expect_s3_class(
+    score_bam(
+      system.file("extdata", "ex1.bam", package = "Rsamtools"), 
+      system.file("extdata", "ex1_dummy_repeat.txt", package = "exSTRa"), 
+      sample_name_origin = "basename", groups.regex = c("case" = ""),
+      parallel = TRUE, cluster_n = 1),
+    "exstra_score"
   )
 })
