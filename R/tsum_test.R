@@ -462,21 +462,6 @@ p_value_simulation <- function(tsums, qmt_bac_untrim, case_control, early_stop, 
 }
 
 
-qm_tsum_stat_ <- function(qm) {
-  
-  bmu <- colMeans(qm)
-  # sum((qm[,1] - bmu[1]) ^ 2 / (nrow(qm) - 1))
-  # TODO: may need correction as used in t.test?
-  bvar <- colMeans(qm ^ 2) - bmu ^ 2
-  bs <- sqrt(bvar)
-  # possibly slower?
-  ## bvar <- colSums(sweep(qm, 2, bmu) ^ 2) / nrow(qm)
-  # in case a different denominator is required:
-  # bvar <- colSums(sweep(qm, 2, bmu) ^ 2) / (nrow(qm) - 1)
-  
-  list(bmu, bs)
-}
-
 #' simple tsum statistic by known 
 #' 
 #' Assume input has been checked, distribution trimming, and minimum quant chopped.
