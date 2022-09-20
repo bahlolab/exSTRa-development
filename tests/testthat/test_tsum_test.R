@@ -7,9 +7,8 @@ test_that("tsum_test()", {
   expect_s3_class(tsum_test(exstra_wgs_pcr_2[c("SCA1")], parallel = TRUE,
                             cluster_n = 1), 
                   "exstra_tsum")
-  expect_s3_class(tsum_test(exstra_wgs_pcr_2[c("SCA1")],
-                            case_control = TRUE), 
-                  "exstra_tsum")
+  expect_snapshot(tsum_test(exstra_wgs_pcr_2[c("SCA1")],
+                            case_control = TRUE)) 
 })
 
 test_that("tsum_plots", {
