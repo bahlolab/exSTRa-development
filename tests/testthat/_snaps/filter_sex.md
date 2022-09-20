@@ -52,3 +52,12 @@
         for 0 samples. ($samples)
         Includes associated STR database of 21 loci. ($db)
 
+---
+
+    Code
+      filter_sex(exstra_wgs_pcr_2_sex, "missing")
+    Output
+      exstra_score object with 1810 observations of type named ($data),
+        for 1 samples. ($samples)
+        Includes associated STR database of 21 loci. ($db)
+
