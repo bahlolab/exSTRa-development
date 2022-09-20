@@ -6,9 +6,6 @@
 #' @param locus Locus name to get the reference size from.
 #' @export
 loci_normal_exp <- function(x, locus) {
-  if(is.element("strdata", class(x))) {
-    x <- x$db
-  }
   assert("The class of x must inherit from exstra_db", inherits(x, "exstra_db"))
   locus.in <- locus
   if(x$input_type == "named") {
@@ -19,7 +16,7 @@ loci_normal_exp <- function(x, locus) {
     rs.len <- with(x.info, nchar(as.character(motif)))
     # normal.copyNum <- with(x.info, floor(copyNum))
     normal.size.bp <- with(x.info, floor(copyNum * rs.len))
-    return(c(normal.size.bp, floor(x.info$rn.unst.low * rs.len)))
+    return(c(normal.size.bp, floor(x.info$aff_low * rs.len)))
   } else if (x$input_type == "ucsc") {
     x.info <- x$db[locus.in == locus] 
     #TODO: this is wrong
