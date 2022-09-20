@@ -19,6 +19,7 @@ test_that("score_count_method()", {
 
 test_that("set_sample_names_score_bam", {
   # Don't know of data set to test RG extraction
+  skip_if_not_installed("NGScopydata")
   expect_equal(
     set_sample_names_score_bam(NULL, NGScopyData::tps_27.chr6()$bamFpath, 
                                "basename", "\\.chr6\\.sort", ".+"), 
@@ -29,6 +30,7 @@ ex1_db_rev <- read_exstra_db(system.file("extdata", "ex1_dummy_repeat.txt", pack
 ex1_db_rev$db[, strand := "-"]
 
 test_that("score_bam()", {
+  skip_if_not_installed("Rsamtools")
   expect_snapshot(
     score_bam(
       system.file("extdata", "ex1.bam", package = "Rsamtools"), 
@@ -57,6 +59,7 @@ test_that("score_bam()", {
 })
 
 test_that("score_bam() parallel", {
+  skip_if_not_installed("Rsamtools")
   expect_s3_class(
     score_bam(
       system.file("extdata", "ex1.bam", package = "Rsamtools"), 
