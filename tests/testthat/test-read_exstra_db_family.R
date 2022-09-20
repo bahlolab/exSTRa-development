@@ -32,4 +32,5 @@ test_that("read_exstra_db error catching", {
       system.file("extdata", "ex1_dummy_repeat.txt", package = "exSTRa")
     )
   )
+  expect_error(read_exstra_db("file.xlsx"), "no longer supported")
 })
