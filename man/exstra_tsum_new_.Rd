@@ -7,7 +7,6 @@
 exstra_tsum_new_(
   strscore,
   tsum,
-  p.values = NULL,
   qmats = NULL,
   xecs = NULL,
   args = NULL,

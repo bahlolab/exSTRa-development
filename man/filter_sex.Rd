@@ -4,7 +4,11 @@
 \alias{filter_sex}
 \title{filter rep_score_data by sex}
 \usage{
-filter_sex(strscore, sex = "known", safe = TRUE)
+filter_sex(
+  strscore,
+  sex = c("known", "male", "female", "missing", "all"),
+  safe = TRUE
+)
 }
 \arguments{
 \item{strscore}{exstra_score object}

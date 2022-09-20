@@ -9,8 +9,7 @@ p_values(
   correction = c("bf", "loci", "samples", "uncorrected"),
   alpha = 0.05,
   only.signif = FALSE,
-  modify = FALSE,
-  p.matrix = NULL
+  modify = FALSE
 )
 }
 \arguments{
@@ -26,8 +25,6 @@ p_values(
 \item{only.signif}{If TRUE, only return significant results.}
 
 \item{modify}{If TRUE, will modify the tsum$stats table. Effectively ignored if only.sig == TRUE.}
-
-\item{p.matrix}{Matrix of p-values for internal use. Should only be used without tsum.}
 }
 \value{
 A \code{data.table} keyed by "locus" then "sample". 
