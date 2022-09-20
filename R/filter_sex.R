@@ -10,7 +10,9 @@
 #'            - "known":   only samples with sex assigned
 #' @param safe When TRUE, missing sex assignments with cause an error when \code{sex} is any of "all", "male" or "female".
 #' @export
-filter_sex <- function(strscore, sex = "known", safe = TRUE) {
+filter_sex <- function(strscore, 
+                       sex = c("known", "male", "female", "missing", "all"),
+                       safe = TRUE) {
   # filter rep_score_data by sex
   # sex can be:
   #   "all":     no filtering
@@ -18,6 +20,7 @@ filter_sex <- function(strscore, sex = "known", safe = TRUE) {
   #   "female":  only female samples
   #   "missing": only missing samples
   #   "known":   only samples with sex assigned
+  sex <- match.arg(sex)
   if(sex %in% c("all", "male", "female")) {
     if(safe) {
       # Check that no data is missing
@@ -35,8 +38,6 @@ filter_sex <- function(strscore, sex = "known", safe = TRUE) {
   } else if (sex == "missing") {
     strscore[, is.na(sex)]
   } else if (sex == "known") {
-    strscore[, !is.na(sex)]
-  } else {
-    stop("Bad sex assignment")
+    strscore[, (!is.na(sex))]
   }
 }
