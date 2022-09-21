@@ -35,13 +35,15 @@ test_that("score_bam()", {
     score_bam(
       system.file("extdata", "ex1.bam", package = "Rsamtools"), 
       system.file("extdata", "ex1_dummy_repeat.txt", package = "exSTRa"), 
-      sample_name_origin = "basename", groups.regex = c("case" = ""))
+      sample_name_origin = "basename", groups.regex = c("case" = ""),
+      verbosity = 2)
   )
   expect_snapshot(
     score_bam(
       system.file("extdata", "ex1.bam", package = "Rsamtools"), 
       ex1_db_rev, 
-      sample_name_origin = "basename", groups.regex = c("case" = ""))
+      sample_name_origin = "basename", groups.regex = c("case" = ""),
+      qname = TRUE)
   )
   expect_snapshot(
     score_bam(
