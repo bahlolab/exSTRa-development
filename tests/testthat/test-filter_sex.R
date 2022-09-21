@@ -11,4 +11,6 @@ test_that("filter_sex()", {
   expect_snapshot(filter_sex(exstra_wgs_pcr_2, "female"))
   expect_snapshot(filter_sex(exstra_wgs_pcr_2, "missing"))
   expect_snapshot(filter_sex(exstra_wgs_pcr_2_sex, "missing"))
+  expect_error(filter_sex(exstra_wgs_pcr_2_sex, "female"), 
+               "some samples have not been assigned a sex")
 })
