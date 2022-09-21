@@ -25,8 +25,10 @@ test_that("loci on exstra_db works", {
 exstra_known_bad <- exstra_known
 exstra_known_bad$input_type <- "broken"
 
-test_that("loci on exstra_db works", {
+test_that("exstra_db loci function errors", {
   expect_error(loci_text_info(exstra_known_bad, "HD"), 
+               "Unrecognised input_type in exstra_db")
+  expect_error(loci_normal_exp(exstra_known_bad, "HD"),
                "Unrecognised input_type in exstra_db")
 })
 
