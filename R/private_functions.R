@@ -1,11 +1,3 @@
-remove_below_quant <- function(loc_data, quant = 0.5) {
-  loc_data[, ord := order(prop), by = sample] [, keepme := ord > max(ord) * quant, by = sample]
-  loc_data <- loc_data[identity(keepme), ]
-  loc_data[, c("ord","keepme") := NULL]
-  loc_data
-}
-
-
 #' @importFrom grDevices dev.off pdf
 plot_many_str_score <- function(strscore, typename, plot_cols, loci = NULL, 
   color_only = NULL, plot_types = 1, dirbase = "images/", 
@@ -77,31 +69,13 @@ plot_many_str_score <- function(strscore, typename, plot_cols, loci = NULL,
 }
 
 
-sample_safe <- function(x, size, replace = FALSE, ...) {
-  # Sometimes the input is only of length one, causing different behaviour
-  if(length(x) == 1) {
-    if(missing(size)){
-      return(x)
-    } else {
-      if(replace) {
-        return(rep(x, size))
-      } else {
-        stop("cannot take a sample larger than the population when 'replace = FALSE'")
-      }
-    }
-  }
-  sample(x, size, replace = replace, ...)
-}
-
 #' @importFrom stats quantile
 make_quantiles_matrix <- function(strscore, loc = TRUE, sample = NULL, read_count_quant = 1, 
-  probs = NULL, quant = NULL, method = "midquantile", n.quantiles = NULL, min.n = 3) {
+  probs = NULL, method = "quantile", n.quantiles = NULL, min.n = 3) {
   # Create the matrix of quantiles
   # read_count_quant: quantile of the read count for chosing the number of quantiles in the output
   # probs, quantile data points, only for method "midquantile" and is prioritised over other methods to choose quantile values
-  # quant, remove the data points below the given quantile for each sample at each locus, this probably should not be used, instead derived from the statistic
   #
-  # method "midquantile" uses Qtools to find the mid-quantile at ppoints(n, a=1/2)
   # method "quantile8" uses the quantile method type 8 (or number inferred)
   # n.quantiles sets the number of quantiles in the output matrix
   # min.n is the minimum number of observations for a sample at a locus to go into the matrix
@@ -113,10 +87,6 @@ make_quantiles_matrix <- function(strscore, loc = TRUE, sample = NULL, read_coun
   } 
   if(loc_data[, .N] == 0) {
     stop("No data left after filtering locus")
-  }
-  if(!is.null(quant)) {
-    loc_data <- remove_below_quant(loc_data, quant)
-    warning("Setting the quantile in make_quantiles_matrix() is not recommended")
   }
   if(is.null(sample)) {
     sample <- strscore$samples$sample
@@ -147,8 +117,6 @@ make_quantiles_matrix <- function(strscore, loc = TRUE, sample = NULL, read_coun
     if(length(y) < min.n) {
       # sometimes there is no data to impute
       v <- rep(as.numeric(NA), n.quantiles)
-    } else if(method == "midquantile") {
-      stop("midquantile is no longer available in exSTRa,")
     } else if(method == "quantile") {
       v <- quantile(y, probs, names = FALSE, type = quantile_type)
     } else {
@@ -175,14 +143,3 @@ trim_vector <- function(dim1, trim) {
 trim_index_ <- function(dim1, trim) {
   c(ceiling(dim1 * trim) + 1, floor(dim1 * (1 - trim)))
 }
-
-
-# parallel replicate, from:
-#https://stackoverflow.com/questions/19281010/simplest-way-to-do-parallel-replicate
-# usage: 
-# cl <- makePSOCKcluster(3) # set 3 to size of cluster (number of cores)
-# hist(parReplicate(cl, 100, mean(rexp(10))))
-parReplicate <- function(cl, n, expr, simplify=TRUE, USE.NAMES=TRUE)
-  parSapply(cl, integer(n), function(i, ex) eval(ex, envir=.GlobalEnv),
-    substitute(expr), simplify=simplify, USE.NAMES=USE.NAMES)
-
