@@ -22,7 +22,13 @@ test_that("loci on exstra_db works", {
   expect_true(all(is.element(exstra_known$db$locus, loci(exstra_known))))
 })
 
+exstra_known_bad <- exstra_known
+exstra_known_bad$input_type <- "broken"
 
+test_that("loci on exstra_db works", {
+  expect_error(loci_text_info(exstra_known_bad, "HD"), 
+               "Unrecognised input_type in exstra_db")
+})
 
 # loci_text_info.exstra_db
 db_ucsc <- read_exstra_db(
@@ -53,4 +59,6 @@ test_that("verify.exstra_db() works", {
   expect_error(verify.exstra_db(X_verify)) 
   expect_error(verify.exstra_db(6))
 })
+
+
 
