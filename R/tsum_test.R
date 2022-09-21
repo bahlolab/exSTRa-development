@@ -158,6 +158,7 @@ tsum_test <- function(strscore,
   }
   
   # Generate T sum statistic
+  na_stats_table_dt <- na_stats_table(strscore)
   if(parallel) {
     all_loci <- loci(strscore)
     names(all_loci) <- all_loci
@@ -175,21 +176,30 @@ tsum_test <- function(strscore,
                                     early_stop = early_stop, early_A = early_A, min_stop = early_stop_min,
                                     verbose = FALSE)
     
-    # Remove errored runs
-    T_stats_list <- T_stats_list[!sapply(T_stats_list, is.null)]
+    # Make NA table for errored runs
+    for(i in seq_along(T_stats_list)) {
+      if(is.null(T_stats_list[[i]])) {
+        T_stats_list[[i]] <- na_stats_table_dt
+      }
+    }
     
   } else {
     T_stats_list <- vector('list', length(loci(strscore)))
     names(T_stats_list) <- loci(strscore)
     for(loc in loci(strscore)) {
       message("Working on locus ", loc)
-      T_stats_loc <- tsum_statistic_1locus(
-        strscore_loc = strscore[loc],
-        min.quant = min.quant,
-        case_control = case_control, trim = trim,
-        give.pvalue = give.pvalue, B = B,
-        early_stop = early_stop, early_A = early_A, min_stop = early_stop_min
-      )
+      T_stats_loc <- tryCatch(
+        tsum_statistic_1locus(
+          strscore_loc = strscore[loc],
+          min.quant = min.quant,
+          case_control = case_control, trim = trim,
+          give.pvalue = give.pvalue, B = B,
+          early_stop = early_stop, early_A = early_A, min_stop = early_stop_min
+        ), 
+        error = function(e) { 
+          message("    Skipped locus due to error (usually low counts)")
+          na_stats_table_dt 
+        })
       
       T_stats_list[[loc]] <- T_stats_loc
     }
@@ -517,3 +527,14 @@ trim_matrix_ <- function(qm, trim = 0) {
   apply(qm, 2, sort.int, partial = ti)[trim_vector(nrow(qm), trim), ]
 }
 
+# Give a NA data.table
+#' @keywords internal
+na_stats_table <- function(strscore) {
+  data.table(
+    sample = strscore$samples$sample,
+    tsum = NA_real_,
+    p.value = NA_real_,
+    p.value.sd = NA_real_,
+    B = NA_integer_
+  )
+}
