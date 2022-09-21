@@ -34,7 +34,7 @@
 ---
 
     Code
-      tsum_test(exstra_wgs_pcr_2[c("SCA1")], case_control = TRUE)
+      tsum_test(exstra_wgs_pcr_2[c("SCA1")], case_control = TRUE, early_stop = FALSE)
     Warning <simpleWarning>
       Trimming at each quantile only leaves 2 observations at each level.
       May have too few control samples (n = 2).
