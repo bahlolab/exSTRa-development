@@ -59,6 +59,3 @@ test_that("verify.exstra_db() works", {
   expect_error(verify.exstra_db(X_verify)) 
   expect_error(verify.exstra_db(6))
 })
-
-
-
