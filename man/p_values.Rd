@@ -6,7 +6,7 @@
 \usage{
 p_values(
   tsum,
-  correction = c("bf", "loci", "samples", "uncorrected"),
+  correction = c("bf", "bonferroni", "loci", "samples", "uncorrected"),
   alpha = 0.05,
   only.signif = FALSE,
   modify = FALSE
@@ -15,7 +15,7 @@ p_values(
 \arguments{
 \item{tsum}{An exstra_tsum object.}
 
-\item{correction}{Correction method to use. Use "bf" or TRUE for Bonferroni correction, and 
+\item{correction}{Correction method to use. Use "bf" or "bonferroni" for Bonferroni correction, and 
 "uncorrected" or FALSE for no correction. ("bonferroni" is also acceptable).
 "samples" is Bonferroni correction by the number of tests (samples) at each locus.
 "loci" is Bonferroni correction by the number of loci.}
