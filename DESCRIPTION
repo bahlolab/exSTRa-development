@@ -33,7 +33,6 @@ Imports:
     testit (>= 0.7), 
     checkmate (>= 2.1.0),
     stringr (>= 1.2.0), 
-    reshape2 (>= 1.4.3), 
     magrittr (>= 1.5), 
     RColorBrewer (>= 1.1-2),
     ggplot2 (>= 3.3.6),
