@@ -28,7 +28,7 @@ test_that("read_score()", {
       database = system.file(
         "extdata", "repeat_expansion_disorders_hg19.txt", package = "exSTRa"),
       groups.samples = list(
-        case = c("WGSrpt_05", "WGSrpt_08"),
+        case = c("WGSrpt_05", "WGSrpt_08")
       )
     ),
     "exstra_score"
