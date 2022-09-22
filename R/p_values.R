@@ -31,9 +31,6 @@ p_values <- function(
   if(!missing(tsum)) {
     assert("tsum should be an exstra_tsum object.", is.exstra_tsum(tsum))
   }
-  assert("correction should be a character or logical vector", 
-    is.character(correction) || is.logical(correction), 
-    is.vector(correction))
   assert("alpha should be a probability value.", alpha >= 0, alpha <= 1)
   assert("only.signif should be a logical.", is.logical(only.signif))
   correction <- match.arg(correction)
