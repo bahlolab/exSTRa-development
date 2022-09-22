@@ -67,3 +67,33 @@
       NA p-values:       0 
       Function arguments: trim = 0, min.quant = 0.5, B = 999
 
+---
+
+    Code
+      tsum_test(exstra_wgs_pcr_2["FRAXE"])
+    Message <simpleMessage>
+      Working on locus FRAXE
+    Output
+      exstra_tsum object with 18 T sum statistics ($stats),
+        with p-values calculated ($stats),
+        over 1 locus. ($db)
+      
+          T sum statistics summary:
+          exSTRa T := sum of two sample t-tests
+      
+      Alternative hypotheses: subject sample has a larger allele than background samples.
+      
+      alpha  Bonferroni unadjusted
+      0.0001          0          1 
+      0.001           0          1 
+      0.01            2          0 
+      0.05            0          0 
+      1              15         15 
+      NA              1          1 
+      
+      Number of samples: 18 
+      Number of loci:    1 
+      Defined p-values:  17 
+      NA p-values:       1 
+      Function arguments: trim = 0.15, min.quant = 0.5, B = 999
+

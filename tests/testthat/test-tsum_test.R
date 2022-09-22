@@ -9,6 +9,7 @@ test_that("tsum_test()", {
                   "exstra_tsum")
   expect_snapshot(tsum_test(exstra_wgs_pcr_2[c("SCA1")],
                             case_control = TRUE, early_stop = FALSE)) 
+  expect_snapshot(tsum_test(exstra_wgs_pcr_2["FRAXE"]))
 })
 
 test_that("tsum_plots", {
