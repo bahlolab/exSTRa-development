@@ -21,7 +21,8 @@ test_that("exstra_tsum plots", {
   )
 })
 
-test_that("brackets exstra_tsum", {
+test_that("Extract exstra_tsum", {
   expect_equal(tsum_4[, "WGSrpt_11"]$samples$sample, "WGSrpt_11")
   expect_equal(tsum_4["HD", ]$db$locus, "HD")
+  expect_snapshot(tsum_4["HD", "WGSrpt_11"])
 })
