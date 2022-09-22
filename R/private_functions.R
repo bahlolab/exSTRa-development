@@ -38,7 +38,7 @@ plot_many_str_score <- function(strscore, typename, plot_cols, loci = NULL,
         if(is.list(color_only)) {
           plot_cols_this <- plot_cols_this[color_only[[loc]]]
         } else {
-          stop("color_only should be list")
+          stop("color_only should be a list")
         }
       }
       plot(strscore, loci = loc, sample_col = plot_cols_this, 

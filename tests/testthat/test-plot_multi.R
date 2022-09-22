@@ -25,6 +25,11 @@ test_that("plot_multi()", {
                color_only = list(
                  FRDA = c("WGSrpt_19"), SCA6 = c("WGSrpt_05", "WGSrpt_07")))
   )
+  expect_error(
+    plot_multi(exstra_wgs_pcr_2, 
+               plot_types = 1,
+               color_only = c(FRDA = "WGSrpt_19")),
+    "color_only should be a list")
 })
 unlink(image_directory)
 
@@ -35,5 +40,3 @@ test_that("plot_multi() should work on exstra_tsum objects (does not at present"
                prefix = "HiSeqXTen_WGS_PCR_2", alpha_case = 0.2))
 })
 unlink(image_directory_tsum4)
-
-
