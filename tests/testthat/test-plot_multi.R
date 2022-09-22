@@ -1,5 +1,6 @@
 data(exstra_wgs_pcr_2)
 image_directory <- tempfile("example_images")
+image_directory_2 <- tempfile("example_images")
 test_that("plot_multi()", {
   vdiffr::expect_doppelganger(
     "Plot multi FRDA", 
@@ -21,7 +22,7 @@ test_that("plot_multi()", {
                custom_legend = c(WGSrpt_05 = "red", WGSrpt_07 = "blue"),
                plot_cols = c(WGSrpt_05 = "red", WGSrpt_07 = "blue", 
                              WGSrpt_19 = "green"),
-               plot_types = 3, dir = image_directory,
+               plot_types = 3, dir = image_directory_2,
                color_only = list(
                  FRDA = c("WGSrpt_19"), SCA6 = c("WGSrpt_05", "WGSrpt_07")))
   )
@@ -32,6 +33,7 @@ test_that("plot_multi()", {
     "color_only should be a list")
 })
 unlink(image_directory)
+unlink(image_directory_2)
 
 image_directory_tsum4 <- tempfile("example_images_tsum4")
 test_that("plot_multi() should work on exstra_tsum objects (does not at present", {
