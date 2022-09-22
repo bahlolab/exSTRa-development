@@ -99,7 +99,6 @@ make_quantiles_matrix <- function(strscore, loc = TRUE, sample = NULL, read_coun
   }
   method <- tolower(method)
     if(is.null(probs)) {
-      #probs <- ppoints(n.quantiles, 1/2)
       probs <- seq(0, 1, length.out = n.quantiles)
     } else {
       n.quantiles <- length(probs) # replace n.quantiles
