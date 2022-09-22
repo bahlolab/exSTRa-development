@@ -25,7 +25,7 @@ is.exstra_tsum <- function(x) inherits(x, "exstra_tsum")
 #' Create a new exstra_tsum object.
 #' @keywords internal
 exstra_tsum_new_ <- function(strscore, tsum,
-    qmats = NULL, xecs = NULL, args = NULL, 
+    args = NULL, 
   correction = c("bf", "locus", "uncorrected"),
   alpha = 0.05,
   only.signif = FALSE) {
@@ -52,13 +52,6 @@ exstra_tsum_new_ <- function(strscore, tsum,
     args = args,
     n_tests = sum (!is.na (stats$tsum))
   )
-  # For old tsum_test_1() function:
-  if(!is.null(qmats)) {
-    out_list <- c(out_list, list(qmats = qmats))
-  }
-  if(!is.null(xecs)) {
-    out_list <- c(out_list, list(xecs = xecs))
-  }
   
   structure(
     out_list, 
