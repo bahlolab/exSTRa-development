@@ -15,7 +15,7 @@ plot_many_str_score <- function(strscore, typename, plot_cols, loci = NULL,
     # dir.create(paste0(dirbase, typename), recursive = TRUE)
     # The version below is more intuitive for other users
     dir.create(dirbase, recursive = TRUE)
-    if(is.element(plot_types, 3)) {
+    if(is.element(3, plot_types)) {
       dir.create(file.path(dirbase, typename), recursive = TRUE)
     }
   }
