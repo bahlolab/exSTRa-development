@@ -73,7 +73,7 @@ tsum_test <- function(strscore,
                            min.quant = 0.5,
                            give.pvalue = TRUE, 
                            B = 999, 
-                           correction = c("bf", "loci", "samples", "uncorrected"),
+                           correction = c("bf", "bonferroni", "loci", "samples", "uncorrected"),
                            alpha = 0.05,
                            case_control = FALSE,
                            early_stop = TRUE,
@@ -97,6 +97,7 @@ tsum_test <- function(strscore,
   assert("When specified, cluster should be a cluster object from the parallel package.", 
          is.null(cluster) || inherits(cluster, "cluster"))
   assert("cluster_n should be at least 1 and a whole-number.", is.null(cluster_n) || cluster_n >= 1)
+  correction <- match.arg(correction)
   
   # trim too high?
   if (trim > 0.3) {
