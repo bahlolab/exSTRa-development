@@ -20,3 +20,8 @@ test_that("exstra_tsum plots", {
            alpha = 0.1)
   )
 })
+
+test_that("brackets exstra_tsum", {
+  expect_equal(tsum_4[, "WGSrpt_11"]$samples$sample, "WGSrpt_11")
+  expect_equal(tsum_4["HD", ]$db$locus, "HD")
+})
