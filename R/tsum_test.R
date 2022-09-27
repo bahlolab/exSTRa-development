@@ -73,7 +73,7 @@ tsum_test <- function(strscore,
                            min.quant = 0.5,
                            give.pvalue = TRUE, 
                            B = 999, 
-                           correction = c("bf", "loci", "samples", "uncorrected"),
+                           correction = c("bf", "bonferroni", "loci", "samples", "uncorrected"),
                            alpha = 0.05,
                            case_control = FALSE,
                            early_stop = TRUE,
@@ -97,14 +97,7 @@ tsum_test <- function(strscore,
   assert("When specified, cluster should be a cluster object from the parallel package.", 
          is.null(cluster) || inherits(cluster, "cluster"))
   assert("cluster_n should be at least 1 and a whole-number.", is.null(cluster_n) || cluster_n >= 1)
-  
-  # Warning for parallel usage
-  if(parallel) {
-    warning("Use of tsum_test(parallel = TRUE) may not be beneficial.\n",
-            "  Optimizations in serial code have reduced the benefits of parallization.\n",
-            "  Additionally, often R jobs tend to be idle which has not been resolved.",
-            immediate. = TRUE)
-  }
+  correction <- match.arg(correction)
   
   # trim too high?
   if (trim > 0.3) {
@@ -166,6 +159,7 @@ tsum_test <- function(strscore,
   }
   
   # Generate T sum statistic
+  na_stats_table_dt <- na_stats_table(strscore)
   if(parallel) {
     all_loci <- loci(strscore)
     names(all_loci) <- all_loci
@@ -183,21 +177,30 @@ tsum_test <- function(strscore,
                                     early_stop = early_stop, early_A = early_A, min_stop = early_stop_min,
                                     verbose = FALSE)
     
-    # Remove errored runs
-    T_stats_list <- T_stats_list[!sapply(T_stats_list, is.null)]
+    # Make NA table for errored runs
+    for(i in seq_along(T_stats_list)) {
+      if(is.null(T_stats_list[[i]])) {
+        T_stats_list[[i]] <- na_stats_table_dt
+      }
+    }
     
   } else {
     T_stats_list <- vector('list', length(loci(strscore)))
     names(T_stats_list) <- loci(strscore)
     for(loc in loci(strscore)) {
       message("Working on locus ", loc)
-      T_stats_loc <- tsum_statistic_1locus(
-        strscore_loc = strscore[loc],
-        min.quant = min.quant,
-        case_control = case_control, trim = trim,
-        give.pvalue = give.pvalue, B = B,
-        early_stop = early_stop, early_A = early_A, min_stop = early_stop_min
-      )
+      T_stats_loc <- tryCatch(
+        tsum_statistic_1locus(
+          strscore_loc = strscore[loc],
+          min.quant = min.quant,
+          case_control = case_control, trim = trim,
+          give.pvalue = give.pvalue, B = B,
+          early_stop = early_stop, early_A = early_A, min_stop = early_stop_min
+        ), 
+        error = function(e) { 
+          message("    Skipped locus due to error (usually low counts)")
+          na_stats_table_dt 
+        })
       
       T_stats_list[[loc]] <- T_stats_loc
     }
@@ -462,21 +465,6 @@ p_value_simulation <- function(tsums, qmt_bac_untrim, case_control, early_stop, 
 }
 
 
-qm_tsum_stat_ <- function(qm) {
-  
-  bmu <- colMeans(qm)
-  # sum((qm[,1] - bmu[1]) ^ 2 / (nrow(qm) - 1))
-  # TODO: may need correction as used in t.test?
-  bvar <- colMeans(qm ^ 2) - bmu ^ 2
-  bs <- sqrt(bvar)
-  # possibly slower?
-  ## bvar <- colSums(sweep(qm, 2, bmu) ^ 2) / nrow(qm)
-  # in case a different denominator is required:
-  # bvar <- colSums(sweep(qm, 2, bmu) ^ 2) / (nrow(qm) - 1)
-  
-  list(bmu, bs)
-}
-
 #' simple tsum statistic by known 
 #' 
 #' Assume input has been checked, distribution trimming, and minimum quant chopped.
@@ -540,3 +528,14 @@ trim_matrix_ <- function(qm, trim = 0) {
   apply(qm, 2, sort.int, partial = ti)[trim_vector(nrow(qm), trim), ]
 }
 
+# Give a NA data.table
+#' @keywords internal
+na_stats_table <- function(strscore) {
+  data.table(
+    sample = strscore$samples$sample,
+    tsum = NA_real_,
+    p.value = NA_real_,
+    p.value.sd = NA_real_,
+    B = NA_integer_
+  )
+}

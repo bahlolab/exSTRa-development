@@ -62,6 +62,7 @@
 <line x1='59.04' y1='157.60' x2='689.76' y2='157.60' style='stroke-width: 0.75; stroke: #CCCCCC; stroke-dasharray: 1.00,3.00;' />
 <line x1='59.04' y1='75.47' x2='689.76' y2='75.47' style='stroke-width: 0.75; stroke: #CCCCCC; stroke-dasharray: 1.00,3.00;' />
 <line x1='327.68' y1='502.56' x2='327.68' y2='59.04' style='stroke-width: 0.75; stroke: #0000FF; stroke-dasharray: 1.00,3.00;' />
+<line x1='502.88' y1='502.56' x2='502.88' y2='59.04' style='stroke-width: 0.75; stroke: #FF0000; stroke-dasharray: 1.00,3.00,4.00,3.00;' />
 <line x1='60.60' y1='486.13' x2='113.55' y2='486.13' style='stroke-width: 0.75; stroke: #000000; stroke-opacity: 0.25;' />
 <line x1='113.55' y1='482.07' x2='129.12' y2='482.07' style='stroke-width: 0.75; stroke: #000000; stroke-opacity: 0.25;' />
 <line x1='129.12' y1='478.00' x2='144.69' y2='478.00' style='stroke-width: 0.75; stroke: #000000; stroke-opacity: 0.25;' />

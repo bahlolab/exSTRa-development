@@ -9,7 +9,7 @@ read_exstra_db(file, ...)
 \arguments{
 \item{file}{Path of the file to be read.}
 
-\item{...}{Extra arguments to the functions \code{read.delim} (text) or \code{xlsx::read.xlsx} (for xlsx files).}
+\item{...}{Extra arguments to the functions \code{read.delim} (text)}
 }
 \value{
 An exstra_db object.
@@ -19,8 +19,7 @@ Reads a file formatted for exSTRa that contains information of short-tandem repe
 loci that may be expanded.
 }
 \details{
-Files are assumed to be tab-delimited unless the extension is xlsx in which case the 
-xlsx package is used (if installed).
+Files are assumed to be tab-delimited
 }
 \examples{
 read_exstra_db(system.file("extdata", "repeat_expansion_disorders_hg19.txt", package = "exSTRa")) 

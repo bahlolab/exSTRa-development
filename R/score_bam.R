@@ -52,6 +52,7 @@ score_bam <- function(paths,
   checkmate::assert_flag(qname)
   checkmate::assert_flag(filter.low.counts)
   if(!is.null(groups.regex)) checkmate::assert_character(groups.regex)
+  checkmate::assert_true(xor(is.null(groups.regex), is.null(groups.samples)))
   #assert("Need groups.samples or groups.regex to be defined", !is.null(groups.samples) || !is.null(groups.regex))
   #assert("Require exactly one of groups.samples or groups.regex to be defined", xor(is.null(groups.samples), is.null(groups.regex)))
   method <- match.arg(method)

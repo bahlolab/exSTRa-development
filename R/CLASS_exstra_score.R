@@ -77,15 +77,6 @@ exstra_score_new_ <- function(data, db) {
   assert("data must be of class data.frame", inherits(data, "data.frame"))
   assert("db must be of class exstra_db", inherits(db, "exstra_db"))
   data <- data.table(data)
-  if(!is.element("locus", colnames(data))) {
-    if(is.element("disease", colnames(data))) {
-      setnames(data, "disease", "locus")
-    } else if(is.element("STR", colnames(data))) {
-      setnames(data, "STR", "locus")
-    } else {
-      stop("Can't find the column with locus name")
-    }
-  }
   setkey(data, locus, sample) 
   samples <- unique(data[, c("sample", "group"), with = FALSE])
   samples$sample <- as.character(samples$sample)
@@ -309,27 +300,41 @@ copy.exstra_score <- function(x) {
 }
 
 
-# Number of data points in exstra_score object
-# @param x exstra_score object.
-# 
+#' Number of data points in exstra_score object
+#'
+#' @param x exstra_score object.
+#'
+#' @return A numeric of length 1
+#' @export
+#'
+#' @examples
+#' data(exstra_wgs_pcr_2)
+#' length(exstra_wgs_pcr_2)
 length.exstra_score <- function(x) {
   x$data[, .N]
 }
   
-  
+
 #' @export
 `length<-.exstra_score` <- function(x, value) {
   stop("Cannot reassign length to exstra_score object.")
 }
 
-# Dimension of exstra_score object
 # 
-# @param x An exstra_score object.
 # 
-# @return Vector of length two, the number of loci and number of samples respectively.
-# 
+#' Dimension of exstra_score object
+#'
+#' @param x An exstra_score object.
+#'
+#' @return Vector of length two, the number of loci and number of samples 
+#'         respectively.
+#' @export
+#'
+#' @examples
+#' data(exstra_wgs_pcr_2)
+#' dim(exstra_wgs_pcr_2)
 dim.exstra_score <- function(x) {
-  c(exstra_wgs_pcr_2$db[, .N], exstra_wgs_pcr_2$samples[, .N])
+  c(x$db[, .N], x$samples[, .N])
 }
 
 #' Convert a compatable object to the exstra_score class

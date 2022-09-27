@@ -6,17 +6,16 @@
 \usage{
 p_values(
   tsum,
-  correction = c("bf", "loci", "samples", "uncorrected"),
+  correction = c("bf", "bonferroni", "loci", "samples", "uncorrected"),
   alpha = 0.05,
   only.signif = FALSE,
-  modify = FALSE,
-  p.matrix = NULL
+  modify = FALSE
 )
 }
 \arguments{
 \item{tsum}{An exstra_tsum object.}
 
-\item{correction}{Correction method to use. Use "bf" or TRUE for Bonferroni correction, and 
+\item{correction}{Correction method to use. Use "bf" or "bonferroni" for Bonferroni correction, and 
 "uncorrected" or FALSE for no correction. ("bonferroni" is also acceptable).
 "samples" is Bonferroni correction by the number of tests (samples) at each locus.
 "loci" is Bonferroni correction by the number of loci.}
@@ -26,8 +25,6 @@ p_values(
 \item{only.signif}{If TRUE, only return significant results.}
 
 \item{modify}{If TRUE, will modify the tsum$stats table. Effectively ignored if only.sig == TRUE.}
-
-\item{p.matrix}{Matrix of p-values for internal use. Should only be used without tsum.}
 }
 \value{
 A \code{data.table} keyed by "locus" then "sample". 

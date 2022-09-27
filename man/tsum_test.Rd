@@ -12,7 +12,7 @@ tsum_test(
   min.quant = 0.5,
   give.pvalue = TRUE,
   B = 999,
-  correction = c("bf", "loci", "samples", "uncorrected"),
+  correction = c("bf", "bonferroni", "loci", "samples", "uncorrected"),
   alpha = 0.05,
   case_control = FALSE,
   early_stop = TRUE,
