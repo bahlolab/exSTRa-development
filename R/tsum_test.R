@@ -293,9 +293,12 @@ tsum_statistic_1locus <- function(strscore_loc,
   # subject is in background by default
   # Use mean and variance of trimmed data (no correction)
   qmt <- qm$y.mat
-  if (is.null(dim(qmt))) {
+  if (is.null(dim(qmt)) || nrow(qmt) == 0 || ncol(qmt) == 0) {
     # Return data.table with NA columns
     na_vec <- rep(NA_real_, n)
+    if(verbose) {
+      message("    Not enough data (low counts)")
+    }
     return(data.table(
       sample = strscore_loc$samples$sample, 
       tsum = na_vec, 
