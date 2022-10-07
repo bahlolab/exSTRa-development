@@ -14,12 +14,12 @@ An exstra_score object:
 }
 }
 \source{
-Rick M. Tankard, Martin B. Delatycki, Paul J. Lockhart, 
-        Melanie Bahlo. 
-        Detecting known repeat expansions with standard protocol next generation 
-        sequencing, towards developing a single screening test for neurological repeat 
-        expansion disorders. 
-        \emph{bioRxiv} 157792; 
+Rick M. Tankard, Martin B. Delatycki, Paul J. Lockhart,
+        Melanie Bahlo.
+        Detecting known repeat expansions with standard protocol next generation
+        sequencing, towards developing a single screening test for neurological repeat
+        expansion disorders.
+        \emph{bioRxiv} 157792;
         doi: \url{https://doi.org/10.1101/157792}
 }
 \usage{

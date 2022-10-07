@@ -24,7 +24,7 @@ rbind_score(
 
 \item{idcol}{The name of the column giving the names of \code{strscore_list} in the output.}
 
-\item{allow_sample_clash}{If TRUE, allows a sample name to occur multiple times in the 
+\item{allow_sample_clash}{If TRUE, allows a sample name to occur multiple times in the
 \code{exstra_score} objects, otherwise duplicates cause an error.}
 
 \item{fill}{If TRUE, missing columns are filled with NAs. Default FALSE.}
@@ -44,18 +44,20 @@ to combine is not known in advance.
 \examples{
 data(exstra_wgs_pcr_2)
 # create a list of distinct samples
-score_list <- list(group1 = exstra_wgs_pcr_2[, "WGSrpt_20"], 
-                   controls = exstra_wgs_pcr_2[, c("WGSrpt_02", "WGSrpt_04")],
-                   group2 = exstra_wgs_pcr_2[, c("WGSrpt_15", "WGSrpt_16")]
-                  )
+score_list <- list(
+  group1 = exstra_wgs_pcr_2[, "WGSrpt_20"],
+  controls = exstra_wgs_pcr_2[, c("WGSrpt_02", "WGSrpt_04")],
+  group2 = exstra_wgs_pcr_2[, c("WGSrpt_15", "WGSrpt_16")]
+)
 combined_scores <- rbind_score_list(score_list)
 combined_scores$samples
 
 # Without using a list:
-rbind_score(group1 = exstra_wgs_pcr_2[, "WGSrpt_20"], 
-            controls = exstra_wgs_pcr_2[, c("WGSrpt_02", "WGSrpt_04")],
-            group2 = exstra_wgs_pcr_2[, c("WGSrpt_15", "WGSrpt_16")]
-            )$samples
+rbind_score(
+  group1 = exstra_wgs_pcr_2[, "WGSrpt_20"],
+  controls = exstra_wgs_pcr_2[, c("WGSrpt_02", "WGSrpt_04")],
+  group2 = exstra_wgs_pcr_2[, c("WGSrpt_15", "WGSrpt_16")]
+)$samples
 
 # Combining with a repeated sample name, possibly due to multiple experiments.
 # Splitting data for this example:

@@ -26,15 +26,20 @@ exstra_known_bad <- exstra_known
 exstra_known_bad$input_type <- "broken"
 
 test_that("exstra_db loci function errors", {
-  expect_error(loci_text_info(exstra_known_bad, "HD"), 
-               "Unrecognised input_type in exstra_db")
-  expect_error(loci_normal_exp(exstra_known_bad, "HD"),
-               "Unrecognised input_type in exstra_db")
+  expect_error(
+    loci_text_info(exstra_known_bad, "HD"),
+    "Unrecognised input_type in exstra_db"
+  )
+  expect_error(
+    loci_normal_exp(exstra_known_bad, "HD"),
+    "Unrecognised input_type in exstra_db"
+  )
 })
 
 # loci_text_info.exstra_db
 db_ucsc <- read_exstra_db(
-  system.file("extdata", "ex1_dummy_repeat.txt", package = "exSTRa"))
+  system.file("extdata", "ex1_dummy_repeat.txt", package = "exSTRa")
+)
 
 test_that("loci_text_info", {
   expect_equal(loci_text_info(db_ucsc, "seq1:21-60:AG"), "seq1:21-60:AG")
@@ -58,6 +63,6 @@ setkey(X_verify$db, "motif")
 test_that("verify.exstra_db() works", {
   local_edition(2)
   expect_true(verify.exstra_db(exstra_known))
-  expect_error(verify.exstra_db(X_verify)) 
+  expect_error(verify.exstra_db(X_verify))
   expect_error(verify.exstra_db(6))
 })

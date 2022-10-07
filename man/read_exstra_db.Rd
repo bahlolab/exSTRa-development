@@ -22,7 +22,7 @@ loci that may be expanded.
 Files are assumed to be tab-delimited
 }
 \examples{
-read_exstra_db(system.file("extdata", "repeat_expansion_disorders_hg19.txt", package = "exSTRa")) 
+read_exstra_db(system.file("extdata", "repeat_expansion_disorders_hg19.txt", package = "exSTRa"))
 
 }
 \seealso{

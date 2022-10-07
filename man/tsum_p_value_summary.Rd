@@ -21,7 +21,7 @@ tsum_p_value_summary(
 
 \item{raw}{If TRUE, give raw p-values.}
 
-\item{bonferroni.size}{If not NULL, override the number of tests to correct for in the 
+\item{bonferroni.size}{If not NULL, override the number of tests to correct for in the
 Bonferroni correction with this value.}
 }
 \value{

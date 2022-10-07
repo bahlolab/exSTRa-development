@@ -10,7 +10,7 @@
 \item{x}{An exstra_score object.}
 }
 \value{
-Vector of length two, the number of loci and number of samples 
+Vector of length two, the number of loci and number of samples
         respectively.
 }
 \description{

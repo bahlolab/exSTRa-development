@@ -37,7 +37,7 @@ tsum[, "WGSrpt_10"]
 # One sample at one locus:
 tsum["HD", "WGSrpt_10"]
 
-# Extract by index 
+# Extract by index
 tsum[2, 5]
 
 # The following are intended to work, but do not at present:

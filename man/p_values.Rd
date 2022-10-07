@@ -15,7 +15,7 @@ p_values(
 \arguments{
 \item{tsum}{An exstra_tsum object.}
 
-\item{correction}{Correction method to use. Use "bf" or "bonferroni" for Bonferroni correction, and 
+\item{correction}{Correction method to use. Use "bf" or "bonferroni" for Bonferroni correction, and
 "uncorrected" or FALSE for no correction. ("bonferroni" is also acceptable).
 "samples" is Bonferroni correction by the number of tests (samples) at each locus.
 "loci" is Bonferroni correction by the number of loci.}
@@ -27,10 +27,10 @@ p_values(
 \item{modify}{If TRUE, will modify the tsum$stats table. Effectively ignored if only.sig == TRUE.}
 }
 \value{
-A \code{data.table} keyed by "locus" then "sample". 
+A \code{data.table} keyed by "locus" then "sample".
         Other columns are \code{tsum} as calculated by \code{\link{tsum_test}}, \code{p.value} (uncorrected),
-        \code{signif} (TRUE if significant after given correction), and 
-        \code{p.value.sd}, giving the standard deviation of the p-value estimate from the 
+        \code{signif} (TRUE if significant after given correction), and
+        \code{p.value.sd}, giving the standard deviation of the p-value estimate from the
         simulation.
 }
 \description{

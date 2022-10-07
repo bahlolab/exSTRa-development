@@ -26,7 +26,7 @@
 \arguments{
 \item{x}{exstra_score object.}
 
-\item{loci}{character; Only plot at the loci specified/ 
+\item{loci}{character; Only plot at the loci specified/
 No effect if NULL.}
 
 \item{sample_col}{Specify the colours for the given samples as a named character vector.
@@ -34,7 +34,7 @@ names() are sample names, while the values are characters specifying colours.
 If specified, other samples are black by default, but may have an alpha value
 less than 1 for transparency.}
 
-\item{refline}{logical; if TRUE, then vertical lines are drawn indicating the reference size. 
+\item{refline}{logical; if TRUE, then vertical lines are drawn indicating the reference size.
 This does not take into account mismatches in the STR, or false repeat hits.}
 
 \item{ylab}{Label for the y-axis.}
@@ -54,8 +54,8 @@ This does not take into account mismatches in the STR, or false repeat hits.}
 \item{xlinked}{If not "all", limits X chromosome loci to only "male" or "female" samples.
 Can also filter on only samples with "known" or "missing" sex.}
 
-\item{xlinked.safe}{logical; if TRUE when xlinked is filtering on "male" or "female", 
-an error will be raised if any samples have an undefined sex. 
+\item{xlinked.safe}{logical; if TRUE when xlinked is filtering on "male" or "female",
+an error will be raised if any samples have an undefined sex.
 If FALSE, samples with missing sex will also be filtered when xlinked is "male" or "female".}
 
 \item{x_upper_missing}{If xlim is not specified, then loci with no data will have this

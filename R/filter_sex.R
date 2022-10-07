@@ -1,6 +1,6 @@
 # old name: str_filter_sex
 #' filter rep_score_data by sex
-#' 
+#'
 #' @param strscore exstra_score object
 #' @param sex the sex to filter, can be any of:
 #'            - "all":     no filtering
@@ -10,7 +10,7 @@
 #'            - "known":   only samples with sex assigned
 #' @param safe When TRUE, missing sex assignments with cause an error when \code{sex} is any of "all", "male" or "female".
 #' @export
-filter_sex <- function(strscore, 
+filter_sex <- function(strscore,
                        sex = c("known", "male", "female", "missing", "all"),
                        safe = TRUE) {
   # filter rep_score_data by sex
@@ -21,18 +21,18 @@ filter_sex <- function(strscore,
   #   "missing": only missing samples
   #   "known":   only samples with sex assigned
   sex <- match.arg(sex)
-  if(sex %in% c("all", "male", "female")) {
-    if(safe) {
+  if (sex %in% c("all", "male", "female")) {
+    if (safe) {
       # Check that no data is missing
-      if(sum(is.na(strscore$samples$sex)) != 0) {
+      if (sum(is.na(strscore$samples$sex)) != 0) {
         stop("In str_filter_sex(), some samples have not been assigned a sex.")
       }
     }
-    if(sex == "all") {
+    if (sex == "all") {
       return(strscore)
-    } else if(sex == "male") {
+    } else if (sex == "male") {
       return(strscore[, sex == "male"])
-    } else if(sex == "female") {
+    } else if (sex == "female") {
       return(strscore[, sex == "female"])
     }
   } else if (sex == "missing") {

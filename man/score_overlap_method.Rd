@@ -12,6 +12,6 @@ score_overlap_method(seqs, motif)
 \item{motif}{A single DNA repeat motif string}
 }
 \description{
-The overlap method tags all base pairs that match the motif or cycles of the 
+The overlap method tags all base pairs that match the motif or cycles of the
 motif (starting on different bases).
 }

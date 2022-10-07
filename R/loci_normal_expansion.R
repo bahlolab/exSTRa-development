@@ -1,16 +1,16 @@
 #' Give the reference or normal size of the STR
-#' 
+#'
 #' This function may not work as intended may be deleted.
-#' 
+#'
 #' @param x Object that inherits from exstra_db
 #' @param locus Locus name to get the reference size from.
 #' @export
 loci_normal_exp <- function(x, locus) {
   assert("The class of x must inherit from exstra_db", inherits(x, "exstra_db"))
   locus.in <- locus
-  if(x$input_type == "named") {
-    x.info <-  x$db[locus.in == locus]
-    #TODO: this is wrong
+  if (x$input_type == "named") {
+    x.info <- x$db[locus.in == locus]
+    # TODO: this is wrong
     assert(paste("The locus", locus, "was not found"), dim(x.info)[1] >= 1)
     assert(paste("There were multiple entries for locus", locus), dim(x.info)[1] <= 1)
     rs.len <- with(x.info, nchar(as.character(motif)))
@@ -18,8 +18,8 @@ loci_normal_exp <- function(x, locus) {
     normal.size.bp <- with(x.info, floor(copyNum * rs.len))
     return(c(normal.size.bp, floor(x.info$aff_low * rs.len)))
   } else if (x$input_type == "ucsc") {
-    x.info <- x$db[locus.in == locus] 
-    #TODO: this is wrong
+    x.info <- x$db[locus.in == locus]
+    # TODO: this is wrong
     assert(paste("The locus", locus, "was not found"), dim(x.info)[1] >= 1)
     assert(paste("There were multiple entries for locus", locus), dim(x.info)[1] <= 1)
     normal.size.bp <- with(x.info, chromEnd - chromStart)

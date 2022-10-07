@@ -18,9 +18,9 @@ Create a ggplot2 ecdf plot from an exstra_score object
 }
 \examples{
 data(exstra_wgs_pcr_2)
-ggexstra_ecdf(exstra_wgs_pcr_2["HD",])
+ggexstra_ecdf(exstra_wgs_pcr_2["HD", ])
 
 library(ggplot2)
-ggexstra_ecdf(exstra_wgs_pcr_2[,]) + facet_wrap("locus")
+ggexstra_ecdf(exstra_wgs_pcr_2[, ]) + facet_wrap("locus")
 
 }

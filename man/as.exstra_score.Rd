@@ -10,7 +10,7 @@ as.exstra_score(x, copy = FALSE)
 \item{x}{An object with a class that inherits from exstra_score}
 
 \item{copy}{Should the object be copied? Slower if TRUE, but in-place data.table
-operations will not change both objects. This option is here to remind 
+operations will not change both objects. This option is here to remind
 users that this is normally copied by reference.}
 }
 \description{

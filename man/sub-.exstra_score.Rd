@@ -42,7 +42,7 @@ exstra_wgs_pcr_2[gene_region == "coding"]$db$locus
 # Extract all case samples:
 exstra_wgs_pcr_2[, group == "case"]
 
-# Extract by index 
+# Extract by index
 exstra_wgs_pcr_2[2, 5]
 
 }

@@ -10,6 +10,6 @@ copy(x)
 \item{x}{Object to copy.}
 }
 \description{
-Copy-on-write doesn't apply to data.table. 
+Copy-on-write doesn't apply to data.table.
 Instead, an explicit copy() must be used.
 }

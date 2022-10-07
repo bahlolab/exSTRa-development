@@ -28,16 +28,16 @@ plot_multi(
 
 \item{dir}{Output directory for PDF plots.}
 
-\item{plot_cols}{If a named vector, colours to use for each sample (names) for all loci. 
-Unspecified samples are treated as controls. 
+\item{plot_cols}{If a named vector, colours to use for each sample (names) for all loci.
+Unspecified samples are treated as controls.
 May be a named (loci) list with named vectors as above for specific
 locus colours.}
 
 \item{color_only}{List (named with loci) of a character vectors of samples to color at each locus.}
 
-\item{plot_types}{vector; Specify the plot output device. May have multiple of the 
-following options if these are desired. 
-Set to: 1 for current device, 
+\item{plot_types}{vector; Specify the plot output device. May have multiple of the
+following options if these are desired.
+Set to: 1 for current device,
 2 for output to a single PDF file with multiple pages (when >1 locus), and
 3 for a PDF file per locus.}
 
