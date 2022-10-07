@@ -33,7 +33,10 @@ tsum_p_value_summary <- function(tsum,
   output <- data.table(alpha = c(p, 1, NA))
   ps <- c(-0.1, p, 1)
   if (bonferroni) {
-    ps.bf <- c(-0.1, p / ifelse(is.null(bonferroni.size), tsum$n_tests, bonferroni.size), 1)
+    n_tests <- tsum$n_tests
+    # Don't cause problems if zero tests
+    n_tests <- ifelse(n_tests == 0, 1, n_tests)
+    ps.bf <- c(-0.1, p / ifelse(is.null(bonferroni.size), n_tests, bonferroni.size), 1)
     output$bf <- 0L
     tab <- table(.bincode(tsum$stats$p.value, ps.bf), useNA = "always")
     output[as.integer(names(tab)), bf := as.integer(tab)]
