@@ -200,19 +200,14 @@ tsum_test <- function(strscore,
     names(T_stats_list) <- loci(strscore)
     for (loc in loci(strscore)) {
       message("Working on locus ", loc)
-      T_stats_loc <- tryCatch(
+      T_stats_loc <- 
         tsum_statistic_1locus(
           strscore_loc = strscore[loc],
           min.quant = min.quant,
           case_control = case_control, trim = trim,
           give.pvalue = give.pvalue, B = B,
           early_stop = early_stop, early_A = early_A, min_stop = early_stop_min
-        ),
-        error = function(e) {
-          message("    Skipped locus due to error (usually low counts)")
-          na_stats_table_dt
-        }
-      )
+        )
 
       T_stats_list[[loc]] <- T_stats_loc
     }
@@ -287,6 +282,8 @@ tsum_statistic_1locus <- function(strscore_loc,
                                   early_A = 0.25,
                                   min_stop = 50,
                                   verbose = TRUE) {
+  n <- length(strscore_loc$samples$sample)
+  
   qm <- make_quantiles_matrix(strscore_loc,
     sample = NULL,
     method = "quantile7"
@@ -296,6 +293,17 @@ tsum_statistic_1locus <- function(strscore_loc,
   # subject is in background by default
   # Use mean and variance of trimmed data (no correction)
   qmt <- qm$y.mat
+  if (is.null(dim(qmt))) {
+    # Return data.table with NA columns
+    na_vec <- rep(NA_real_, n)
+    return(data.table(
+      sample = strscore_loc$samples$sample, 
+      tsum = na_vec, 
+      p.value = na_vec, p.value.sd = na_vec, B = na_vec,
+      errors = rep("low_count", n))
+    )
+  }
+  
   # remove lower quantiles
   if (min.quant != 0) {
     qs <- ceiling(ncol(qmt) * (1 - min.quant)) # number columns to keep
@@ -361,7 +369,9 @@ tsum_statistic_1locus <- function(strscore_loc,
 
 
   # output data.table directly, so that we can include p-values
-  data.table(sample = names(tsums), tsum = tsums, p.value = p.value, p.value.sd = p.value.sd, B = B_used)
+  data.table(sample = names(tsums), tsum = tsums, 
+             p.value = p.value, p.value.sd = p.value.sd, B = B_used,
+             errors = rep(NA_character_, ))
 }
 
 p_value_simulation <- function(tsums, qmt_bac_untrim, case_control, early_stop, early_A, B, min_stop, trim, verbose) {
