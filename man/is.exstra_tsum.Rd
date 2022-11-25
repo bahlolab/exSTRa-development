@@ -13,6 +13,6 @@ is.exstra_tsum(x)
 Logical
 }
 \description{
-Checks for the class attribute only. 
+Checks for the class attribute only.
 Does not check for correctness.
 }

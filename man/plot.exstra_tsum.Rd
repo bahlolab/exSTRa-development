@@ -22,10 +22,10 @@
 
 \item{sample_col}{Named (samples) vector of charcters defining colors.}
 
-\item{correction}{Apply this correction method from \code{\link{p_values}}. 
+\item{correction}{Apply this correction method from \code{\link{p_values}}.
 If NULL, then the correction already applied to tsum is used.}
 
-\item{alpha}{Significance level. 
+\item{alpha}{Significance level.
 If NULL, then the significance already applied to tsum is used. (default 0.05)}
 
 \item{controls_label}{Generic label for all control samples.}

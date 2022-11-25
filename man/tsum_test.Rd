@@ -12,7 +12,7 @@ tsum_test(
   min.quant = 0.5,
   give.pvalue = TRUE,
   B = 999,
-  correction = c("bf", "loci", "samples", "uncorrected"),
+  correction = c("bf", "bonferroni", "loci", "samples", "uncorrected"),
   alpha = 0.05,
   case_control = FALSE,
   early_stop = TRUE,
@@ -27,7 +27,7 @@ tsum_test(
 \arguments{
 \item{strscore}{An exstra_score object.}
 
-\item{trim}{Trim this proportion of data points at each quantile 
+\item{trim}{Trim this proportion of data points at each quantile
 level (rounded up). Must be at least 0 and less than 0.5, but values close
 to 0.5 may remove all samples and hence result in an error.}
 
@@ -41,7 +41,7 @@ to 0.5 may remove all samples and hence result in an error.}
 useful to turn off if only the t sum statistics are required.}
 
 \item{B}{Number of simulations in calculating null distributions. The denominator will
-be B + 1, hence values of B = 10^i - 1 will result in p-values that are 
+be B + 1, hence values of B = 10^i - 1 will result in p-values that are
 decimal fractions.}
 
 \item{correction}{Correction method of p_value() function.}
@@ -53,26 +53,26 @@ all samples are used to calculate the background distribution.}
 
 \item{early_stop}{Simulation may use less replicates when all p-values are large, controlled with early_A.}
 
-\item{early_A}{Simulations may stop when p.value.sd < early_A * min(p.value). 
+\item{early_A}{Simulations may stop when p.value.sd < early_A * min(p.value).
 Checked approximately when the number of simulations has doubled.}
 
 \item{early_stop_min}{Minimum number of simulations to run before early termination.}
 
 \item{parallel}{Use the parallel package when simulating the distribution, creating the
-required cluster. 
+required cluster.
 If cluster is specified then this option makes no difference.}
 
-\item{cluster_n}{If parallel is TRUE, then the number of nodes in the cluster is 
- automatically set as half of those available on your machine 
- (but never less than 1). This option allows manual setting of the 
- number of nodes, either less to free up other resources, or to 
- maximize available resources. 
+\item{cluster_n}{If parallel is TRUE, then the number of nodes in the cluster is
+ automatically set as half of those available on your machine
+ (but never less than 1). This option allows manual setting of the
+ number of nodes, either less to free up other resources, or to
+ maximize available resources.
 If cluster is specified then this option makes no difference.}
 
-\item{cluster}{A snow cluster created by snow::makeCluster(). Use if you wish to set up 
+\item{cluster}{A snow cluster created by snow::makeCluster(). Use if you wish to set up
 the cluster yourself or reuse an existing cluster.}
 
-\item{keep.sim.tsum}{For inspection of simulations. 
+\item{keep.sim.tsum}{For inspection of simulations.
 If TRUE, keep all simulation Tsum statistics in output$xecs (default FALSE).}
 }
 \value{
@@ -80,7 +80,7 @@ An exstra_tsum object with T statistics and p-values (if calculated).
 }
 \description{
 When applied to an exstra_score object, T sum statistics are calculated as described
-in Tankard et al. 
+in Tankard et al.
 May also be applied on a pre-existing exstra_tsum that will regenerate the values.
 }
 \examples{
@@ -95,12 +95,12 @@ exp_test_parallel
 
 }
 \references{
-Rick M. Tankard, Martin B. Delatycki, Paul J. Lockhart, 
-        Melanie Bahlo. 
-        Detecting known repeat expansions with standard protocol next generation 
-        sequencing, towards developing a single screening test for neurological repeat 
-        expansion disorders. 
-        \emph{bioRxiv} 157792; 
+Rick M. Tankard, Martin B. Delatycki, Paul J. Lockhart,
+        Melanie Bahlo.
+        Detecting known repeat expansions with standard protocol next generation
+        sequencing, towards developing a single screening test for neurological repeat
+        expansion disorders.
+        \emph{bioRxiv} 157792;
         doi: \url{https://doi.org/10.1101/157792}
 }
 \seealso{

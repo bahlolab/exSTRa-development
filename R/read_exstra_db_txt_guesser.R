@@ -4,9 +4,9 @@
 # @param ... Additional arguments to read_exstra_db_known()
 read_exstra_db_txt_guesser <- function(file, ...) {
   # Scan the header
-  filefirst <- read.delim(file, nrows = 1, comment.char = "#") 
-  
-  if("locus" %in% names(filefirst)) {
+  filefirst <- read.delim(file, nrows = 1, comment.char = "#")
+
+  if ("locus" %in% names(filefirst)) {
     # Using a known database format
     read_exstra_db_known(file, ...)
   } else {

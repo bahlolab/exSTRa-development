@@ -1,0 +1,2 @@
+#bin	chrom	chromStart	chromEnd	name	period	copyNum	consensusSize	perMatch	perIndel	score	A	C	G	T	entropy	sequence
+665	seq1	20	60	trf	2	4	2	92	4	90	75	0	22	1	0.9	AG
